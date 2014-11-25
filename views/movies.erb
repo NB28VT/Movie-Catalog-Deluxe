@@ -1,0 +1,28 @@
+<!doctype html>
+  <head>
+    <meta charset="utf-8">
+    <title>Movierama</title>
+  </head>
+
+
+  <body>
+    <h1>Movie Database...Redux!!</h1>
+    <h2>Movies</h2>
+
+    <!--TWO BIG BUTTONS  -->
+
+    <a href="/movie_catalog">Home</a>
+    <a href="/movie_catalog/actors">Actors</a>
+
+    <div class = "actor_content">
+      <ul>
+        <% @movies.each do |movie| %>
+        <li><%= movie["title"] %></li>
+        <% end %>
+      </ul>
+
+    </div>
+
+  </body>
+
+</html>
