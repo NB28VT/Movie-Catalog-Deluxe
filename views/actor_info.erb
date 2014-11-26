@@ -3,11 +3,9 @@
     <meta charset="utf-8">
     <title>Movierama</title>
   </head>
-
-
   <body>
     <h1>Movie Database...Redux!!</h1>
-    <h2>Actors</h2>
+    <h2><%=@actor_info%></h2>
 
     <!--TWO BIG BUTTONS  -->
 
@@ -15,12 +13,14 @@
     <a href="/movie_catalog/movies">Movies</a>
 
     <div class = "actor_info">
-      <% @titles.each do |movie| %>
-        <li><%= movie["title"] %></li>
-      <% end %>  
+      <li>Film  Role</li>
+      <% @actor_info.to_a.each do |actor| %>
+        <li>
+          <a href= "/movie_catalog/movies/<%= actor["movie_id"] %>"><%= actor["title"] %>
+          </a>
+           : <%= actor["character"] %>
+        </li>
+      <% end %>
     </div>
-
-
   </body>
-
 </html>

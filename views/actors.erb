@@ -3,8 +3,7 @@
     <meta charset="utf-8">
     <title>Movierama</title>
   </head>
-
-
+  
   <body>
     <h1>Movie Database...Redux!!</h1>
     <h2>Actors</h2>
@@ -17,13 +16,13 @@
     <div class = "actor_content">
       <ul>
         <% @actors.each do |actor| %>
-          <li><a href ="/movie_catalog/actors/<%= actor["id"] %>"><%= actor["name"] %></a></li>
+          <li>
+            <a href ="/movie_catalog/actors/<%= actor["id"] %>">
+              <%= actor["name"] %>
+            </a>
+          </li>
         <% end %>
       </ul>
-
     </div>
-
-
   </body>
-
 </html>

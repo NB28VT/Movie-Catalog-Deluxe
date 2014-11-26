@@ -1,0 +1,40 @@
+<!doctype html>
+  <head>
+    <meta charset="utf-8">
+    <title>Movierama</title>
+  </head>
+  <body>
+    <h1>Movie Database...Redux!!</h1>
+
+    <!--TWO BIG BUTTONS  -->
+
+    <a href="/movie_catalog">Home</a>
+    <a href="/movie_catalog/actors">Actors</a>
+
+    <div class = "movie_content">
+      <% @movie_data.to_a.each do |movie| %>
+        <h3><%= movie["title"] %></h3>
+        <ul>
+          <li>
+            Genre: <%= movie["genre"] %>
+          </li>
+          <li>
+            Studio: <%= movie["studio"] %>
+          </li>
+        </ul>
+      <% end %>
+
+      <h4>Cast members and Role</h4>
+
+      <ul>
+        <% @cast_data.to_a.each do |cast| %>
+          <li>
+            <a href="/movie_catalog/actors/<%= cast["id"] %>">
+              <%= cast["name"] %> , <%= cast["character"]%>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </body>
+</html>
