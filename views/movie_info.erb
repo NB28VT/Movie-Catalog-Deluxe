@@ -1,6 +1,14 @@
-
-<a href="/movie_catalog">Home</a>
-<a href="/movie_catalog/actors">Actors</a>
+<ul class = "button-group round even-3">
+  <li>
+    <a href="/movie_catalog/actors" class="button success">Actors</a>
+  </li>
+  <li>
+    <a href="/movie_catalog" class="button success">Home</a>
+  </li>
+  <li>
+    <a href="/movie_catalog/movies" class="button success">Movies</a>
+  </li>
+</ul>
 
 <div class = "movie_content">
   <% @movie_data.to_a.each do |movie| %>
@@ -17,13 +25,26 @@
 
   <h4>Cast members and Role</h4>
 
-  <ul>
-    <% @cast_data.to_a.each do |cast| %>
-      <li>
-        <a href="/movie_catalog/actors/<%= cast["id"] %>">
-          <%= cast["name"] %> , <%= cast["character"]%>
-        </a>
-      </li>
-    <% end %>
-  </ul>
-</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th width="200">Actor</th>
+        <th width="150">Character</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cast_data.to_a.each do |cast| %>
+      <tr>
+        <td>
+          <a href="/movie_catalog/actors/<%= cast["id"] %>">
+            <%= cast["name"] %>
+          </a>
+        </td>
+        <td>
+          <%= cast["character"]%>
+        </td>
+      <% end %>
+    </tr>
+    </tbody>
+  </table>

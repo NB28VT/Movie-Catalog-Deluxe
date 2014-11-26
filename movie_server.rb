@@ -35,7 +35,8 @@ get '/movie_catalog/actors/:id' do
   @id = params[:id]
 
   # NOT PROTECTED FOR SQL INJECTION
-  actors_movies_query = "SELECT movies.title, actors.name, cast_members.character, movies.id AS movie_id FROM movies JOIN cast_members
+  actors_movies_query = "SELECT movies.title, actors.name,
+  cast_members.character, movies.id AS movie_id FROM movies JOIN cast_members
   ON movies.id = cast_members.movie_id JOIN actors
   ON actors.id = cast_members.actor_id
   WHERE actors.id = #{@id};"
@@ -44,13 +45,23 @@ get '/movie_catalog/actors/:id' do
     @actor_info = connection.exec(actors_movies_query)
   end
 
+  @actor_info.to_a.each do |actor|
+    @actor_name = actor["name"]
+  end
+
   erb :actor_info
 end
 
 
 
 get '/movie_catalog/movies' do
-  query = "SELECT movies.title, movies.id AS id FROM movies order BY movies.title;"
+  query = "SELECT movies.title, movies.id AS id,
+  movies.year, movies.rating,
+  studios.name AS studio, genres.name AS genre
+  FROM movies
+  JOIN studios ON movies.studio_id = studios.id
+  LEFT OUTER JOIN genres ON movies.genre_id = genres.id
+  order BY movies.title;"
 
   db_connection do |connection|
     @movies = connection.exec(query)
@@ -59,7 +70,6 @@ get '/movie_catalog/movies' do
 end
 
 
-# * Visiting `/movies/:id` will show the details for the movie. This page should contain information about the movie (including genre and studio) as well as a list of all of the actors and their roles. Each actor name is a link to the details page for that actor.
 
 get '/movie_catalog/movies/:id' do
   @id = params[:id]

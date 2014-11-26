@@ -1,18 +1,34 @@
+<h2><%= @actor_name %></h2>
 
-<h2><%=@actor_info%></h2>
+<ul class = "button-group round even-3">
+  <li>
+    <a href="/movie_catalog/actors" class="button success">Actors</a>
+  </li>
+  <li>
+    <a href="/movie_catalog" class="button success">Home</a>
+  </li>
+  <li>
+    <a href="/movie_catalog/movies" class="button success">Movies</a>
+  </li>
+</ul>
 
-<!--TWO BIG BUTTONS  -->
-
-<a href="/movie_catalog">Home</a>
-<a href="/movie_catalog/movies">Movies</a>
-
-<div class = "actor_info">
-  <li>Film  Role</li>
-  <% @actor_info.to_a.each do |actor| %>
-    <li>
-      <a href= "/movie_catalog/movies/<%= actor["movie_id"] %>"><%= actor["title"] %>
-      </a>
-       : <%= actor["character"] %>
-    </li>
-  <% end %>
-</div>
+<table>
+  <thead>
+    <tr>
+      <th width="200">Film</th>
+      <th width="150">Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @actor_info.to_a.each do |actor| %>
+    <tr>
+      <td>
+        <a href= "/movie_catalog/movies/<%= actor["movie_id"] %>"><%= actor["title"] %>
+        </a>
+      </td>
+      <td>
+        <%= actor["character"] %>
+      </td>
+    <% end %>
+  </tbody>
+</table>

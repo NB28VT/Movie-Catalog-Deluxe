@@ -1,18 +1,30 @@
 <h2>Actors</h2>
 
-<!--TWO BIG BUTTONS  -->
+<ul class = "button-group round even-3">
+  <li>
+    <a href="/movie_catalog/actors" class="button success">Actors</a>
+  </li>
+  <li>
+    <a href="/movie_catalog" class="button success">Home</a>
+  </li>
+  <li>
+    <a href="/movie_catalog/movies" class="button success">Movies</a>
+  </li>
+</ul>
 
-<a href="/movie_catalog">Home</a>
-<a href="/movie_catalog/movies">Movies</a>
-
-<div class = "actor_content">
-  <ul>
+<table>
+  <thead>
+    <tr>
+      <th width="400">Actor</th>
+    </tr>
+  </thead>
+  <tbody>
     <% @actors.each do |actor| %>
-      <li>
-        <a href ="/movie_catalog/actors/<%= actor["id"] %>">
-          <%= actor["name"] %>
-        </a>
-      </li>
+    <tr>
+      <td><a href ="/movie_catalog/actors/<%= actor["id"] %>">
+        <%= actor["name"] %>
+      </td>
+    </tr>
     <% end %>
-  </ul>
-</div>
+  </tbody>
+</table>
