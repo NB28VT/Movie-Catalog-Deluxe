@@ -25,7 +25,7 @@ get '/movie_catalog/actors' do
   query = "SELECT actors.name, actors.id FROM actors ORDER BY actors.name;"
 
   db_connection do |connection|
-    @actors = connection.exec_params(query, data)
+    @actors = connection.exec_params(query)
   end
 
   erb :actors

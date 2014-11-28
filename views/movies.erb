@@ -60,10 +60,10 @@
   </tbody>
 </table>
 
-<a href = '/movie_catalog/movies?order=title&page=<%= @page + 1  %>'>
-  Next page
+<a href = '/movie_catalog/movies?order=title&page=<%= @page - 1 %>' class = "button secondary">
+  Prior page
 </a>
 
-<a href = '/movie_catalog/movies?order=title&page=<%= @page - 1 %>'>
-  Prior page
+<a href = '/movie_catalog/movies?order=title&page=<%= @page + 1  %>' class = "button secondary">
+  Next page
 </a>
