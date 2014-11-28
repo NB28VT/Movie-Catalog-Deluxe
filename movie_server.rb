@@ -55,6 +55,11 @@ end
 
 get '/movie_catalog/movies' do
   @order = params[:order]
+  @page = params[:page].to_i
+  if @page > 1
+    @offset = "OFFSET #{((@page - 1)* 20)}"
+  end
+
 
 
   query = "SELECT movies.title, movies.id AS id,
@@ -63,7 +68,7 @@ get '/movie_catalog/movies' do
   FROM movies
   JOIN studios ON movies.studio_id = studios.id
   LEFT OUTER JOIN genres ON movies.genre_id = genres.id
-  order BY movies.#{@order};"
+  ORDER BY movies.#{@order} LIMIT 20 #{@offset};"
 
   db_connection do |connection|
     @movies = connection.exec(query)
