@@ -8,7 +8,7 @@
     <a href="/movie_catalog" class="button success">Home</a>
   </li>
   <li>
-    <a href="/movie_catalog/movies" class="button success">Movies</a>
+    <a href="/movie_catalog/movies?order=title" class="button success">Movies</a>
   </li>
 </ul>
 
@@ -16,14 +16,18 @@
 <table>
   <thead>
     <tr>
-      <th width="200">Title</th>
+      <th width="200">
+        <a href="/movie_catalog/movies?order=title">
+        Title
+        </a>
+      </th>
       <th>
-        <a href = '/movie_catalog/sorted_by_year'>
+        <a href = '/movie_catalog/movies?order=year'>
           Year
         </a>
       </th>
       <th width="150">
-        <a href = '/movie_catalog/sorted_by_rating'>
+        <a href = '/movie_catalog/movies?order=rating'>
           Rating
         </a>
       </th>
