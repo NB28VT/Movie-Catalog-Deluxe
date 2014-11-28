@@ -68,7 +68,44 @@ get '/movie_catalog/movies' do
   erb :movies
 end
 
+# REFACTOR TO HANDLE MULTIPLE REQUESTS
 
+get '/movie_catalog/sorted_by_year' do
+
+
+
+  query = "SELECT movies.title, movies.id AS id,
+  movies.year, movies.rating,
+  studios.name AS studio, genres.name AS genre
+  FROM movies
+  JOIN studios ON movies.studio_id = studios.id
+  LEFT OUTER JOIN genres ON movies.genre_id = genres.id
+  ORDER BY movies.year;"
+
+  db_connection do |connection|
+    @movies = connection.exec(query)
+  end
+
+  erb :movies
+end
+
+# Order by RATING NOT WORKING
+
+get '/movie_catalog/sorted_by_rating' do
+  query = "SELECT movies.title, movies.id AS id,
+  movies.year, movies.rating,
+  studios.name AS studio, genres.name AS genre
+  FROM movies
+  JOIN studios ON movies.studio_id = studios.id
+  LEFT OUTER JOIN genres ON movies.genre_id = genres.id
+  ORDER BY movies.rating;"
+
+  db_connection do |connection|
+    @movies = connection.exec(query)
+  end
+
+  erb :movies
+end
 
 get '/movie_catalog/movies/:id' do
   @id = params[:id]
