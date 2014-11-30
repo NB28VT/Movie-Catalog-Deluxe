@@ -21,8 +21,15 @@ get '/movie_catalog' do
 end
 
 get '/movie_catalog/actors' do
-  # refactor into seperate method later
-  query = "SELECT actors.name, actors.id FROM actors ORDER BY actors.name;"
+
+  @page = params[:page].to_i
+  if @page > 1
+    @offset = "OFFSET #{((@page - 1)* 20)}"
+  end
+
+
+
+  query = "SELECT actors.name, actors.id FROM actors ORDER BY actors.name LIMIT 20 #{@offset};"
 
   db_connection do |connection|
     @actors = connection.exec_params(query)
